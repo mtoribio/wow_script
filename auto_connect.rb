@@ -12,6 +12,8 @@ class WowAuto
   SRC_DIR = './img'
   TMP_DIR = './tmp'
 
+  def initialize; end
+
   def open_blizzard
     mouse_move(280, 1069)
     sleep 5
@@ -37,7 +39,6 @@ class WowAuto
     left_click
     sleep 5
   end
-
 
   # @return [void]
   def connect
@@ -89,16 +90,19 @@ class WowAuto
         puts 'Connecting...'
       else
         puts 'Sleeping...'
-        # sleep 10 * 60
-        # connect_to_wow
+        sleep 10 * 60
+        run
       end
     end
   end
+
+  def run
+    open_blizzard
+    open_wow
+    open_server
+    connect
+  end
 end
-wow_auto = WowAuto.new
-wow_auto.open_blizzard
-wow_auto.open_wow
-wow_auto.open_server
-# wow_auto.connect
+WowAuto.new.run
 
 # Mouse coords 390 985
